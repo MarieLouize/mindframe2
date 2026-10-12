@@ -14,7 +14,7 @@ are committed; these are the clicks/commands to make it live. Do the steps in or
 ## 1. Push the two repos to GitHub
 
 On GitHub, create two **empty** repos under your account (no README, no .gitignore,
-no license): `lattice` and `mindframe`. Then push over HTTPS (this machine has no SSH
+no license): `lattice` and `mindframe2`. Then push over HTTPS (this machine has no SSH
 key, only a stored HTTPS token for `MarieLouize`):
 
 ```bash
@@ -29,7 +29,7 @@ cd /root/mindframe
 git add -A
 git commit -m "chore: scaffold mindframe node (engine + web)"
 git branch -M main
-git remote add origin https://github.com/MarieLouize/mindframe.git
+git remote add origin https://github.com/MarieLouize/mindframe2.git
 git push -u origin main
 ```
 
@@ -59,7 +59,7 @@ Verify in the dashboard: tables `apps`, `profiles`, `runs`, `run_events`, `artif
 
 ## 3. Deploy the engine (Render)
 
-Option A — blueprint: in Render, **New → Blueprint**, point at your `mindframe` repo;
+Option A — blueprint: in Render, **New → Blueprint**, point at your `mindframe2` repo;
 it reads `render.yaml`. Option B — manual: **New → Web Service**, runtime **Docker**,
 context `services/engine`, Dockerfile `services/engine/Dockerfile`, health check `/health`.
 
@@ -79,7 +79,7 @@ Render injects `$PORT`; the Dockerfile binds to it. Confirm:
 
 ## 4. Deploy the web (Vercel)
 
-1. **New Project → Import** your `mindframe` repo.
+1. **New Project → Import** your `mindframe2` repo.
 2. Set **Root Directory** to `apps/web`.
 3. Add environment variable `NEXT_PUBLIC_API_URL` = the Render engine URL from step 3.
 4. Deploy. Confirm the page loads and its status card links to `/health`.
